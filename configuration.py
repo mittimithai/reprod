@@ -55,6 +55,5 @@ spadeVmPass = "helloworld"
 spadeVmStartTime = 30
 spadeVmSnapshot = "Snapshot1"
 spadeVmCloseTime = 5
-getOpsPaths = f"/media/sf_{current_folder}/getops.py"
 getFileOperationsPath = f"/media/sf_{current_folder}/getFileOperations.py"
 sharedFolderPath = f"{current_directory}"

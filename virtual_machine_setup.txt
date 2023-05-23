@@ -1,4 +1,4 @@
-Windows Sandbox}
+Windows Sandbox
 
  Setup a Microsoft Windows 10 Pro (10.0.19045 Build 19045) virtual machine in VirtualBox 7.0 with only Local disk (C:)
  Install VirtualBox guestAdditions with \slash auto\_logon switch
@@ -35,13 +35,14 @@ Windows Sandbox}
  "Configure local setting override for monitoring file and program activity on your computer" -> disabled
  "Configure local setting override to turn on real-time protection" -> disabled
  "Configure local setting override for monitoring for incoming and outgoing file activity" -> disabled
+  Take a snapshot of the virtual machine as ransomwareVm.ova
 
 
-SPADE Processing}
+SPADE Processing
 
  Setup a Ubuntu 18.04.6 LTS virtual machine in VirtualBox 7.0
  Install and setup SPADE in the home directory
  Go to startup applications preferences -> add and browse to SPADE \slash bin and add spade.sh as the entry
  Turn off the virtual machine
- Take a snapshot of the virtual machine
+ Take a snapshot of the virtual machine as spadeVm.ova
 
