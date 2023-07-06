@@ -15,7 +15,7 @@ Broadly, the code can be used to download batches of malware samples from [Malwa
 
 
 # Requirements
-Python version: 3.?
+Python version: 3.11.0
 
 ransomeware vm requirments:
 Ram : 8gb
