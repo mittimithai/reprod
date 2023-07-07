@@ -1,7 +1,7 @@
 This repo contains the code that was used to generate the provenance data at:
-10.5281/zenodo.7933807
+[https://doi.org/10.5281/zenodo.7933807](https://doi.org/10.5281/zenodo.7933807)
 
-Published in the CSET 2023: DOI
+Published in the CSET 2023: [https://doi.org/10.1145/3607505.3607510](https://doi.org/10.1145/3607505.3607510)
 
 Broadly, the code can be used to download batches of malware samples from [MalwareBazaar](https://bazaar.abuse.ch/), run them in a windows virtual machine and extract procmon logs provided as  input to [SPADE](https://github.com/ashish-gehani/SPADE).  The code depends on two virtual machine images, the detailed instructions to create those images can be found in `virtual_machine_setup.txt`.
 
