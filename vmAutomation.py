@@ -140,7 +140,7 @@ def runSpade():
 
     #makes the shared folder
     os.system(f'''VBoxManage snapshot {config.spadeVmName} restore {config.spadeVmSnapshot}''')
-    os.system(f'''VBoxManage sharedfolder add "{config.spadeVmName}" --name "{config.current_folder}" --hostpath "{config.sharedFolderPath}" --automount''')
+    os.system(f'''VBoxManage sharedfolder add "{config.spadeVmName}" --name "{config.main_folder}" --hostpath "{config.sharedFolderPath}" --automount''')
 
     # starts the vm and sets up username and password
     print('\n')
