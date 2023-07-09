@@ -3,7 +3,7 @@ import argparse
 import importlib.util
 
 parser = argparse.ArgumentParser()
-parser.add_argument('config_folder', help="name of folder that you want to create the csv for")
+parser.add_argument('config_folder', help="name of folder that you want to setup")
 args = parser.parse_args()
 folder_name = args.config_folder
 
