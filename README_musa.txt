@@ -6,14 +6,14 @@ Published in the CSET 2023: DOI
 Broadly, the code can be used to download batches of malware samples from [MalwareBazaar](https://bazaar.abuse.ch/), run them in a windows virtual machine and extract procmon logs provided as  input to [SPADE](https://github.com/ashish-gehani/SPADE).  The code depends on two virtual machine images, the detailed instructions to create those images can be found in `virtual_machine_setup.txt`.
 
 1. Ensure that VirtualBox binaries are in your path (this is done by default on most package manager installtions). This can be checked by running `vboxmanage` at the command line.
-2. Also, ensure that the main directory (named reprod-main) is an environment variable, as it is used in configuration.py. The variable in configuration.py that contains tha name of this environment variable is 'env_var_name' and the name stored by default is "REPROD_MAIN".
-3. Download and unzip the [7zip](https://www.7-zip.org/) and [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) folders in the root directory of this repo. Make sure the folders are named "7-Zip" and "ProcessMonitor"
-4. Move the `spade.reporter.ProcMon.pmc` from repo folder to `ProcessMonitor` folder
-5. run `setup.py`, this will import the two virtual machine image (one for the windows malware host and one for the SPADE host) that will run the malware binaries into virtualbox (paths specified in `config.py`) and make snapshots of them
-6. use the supplied `vm_hashes_exe.txt` file, a list of malware sha256 hashes from MalwareBazaar (this list can easily be obtained from [Malware Bazaar](https://bazaar.abuse.ch/export/#csv))
-7. run `vmAutomation.py` to run the list of malware binaries inside the associated BMcollect logs, file-operations, densities, and screenshots for each hash in the previous step
-8. run `csv_populate` to generate a summary of the dataset
-9. To rerun the project for a different set of malware binaries based on the summary of the dataset created, run `rerun.py`.
+2. Download and unzip the [7zip](https://www.7-zip.org/) and [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) folders in the root directory of this repo. Make sure the folders are named "7-Zip" and "ProcessMonitor"
+3. Move the `spade.reporter.ProcMon.pmc` from repo folder to `ProcessMonitor` folder
+4. An initial folder, named `run_template`, is provided with a configuration.py and a list of malware hashes.
+4. run `setup.py`, this will import the two virtual machine image (one for the windows malware host and one for the SPADE host) that will run the malware binaries into virtualbox (paths specified in `config.py`) and make snapshots of them. You will have to provide the name of the folder where you want to setup the directories.
+5. use the supplied `run_template_hashes_exe.txt` file, a list of malware sha256 hashes from MalwareBazaar (this list can easily be obtained from [Malware Bazaar](https://bazaar.abuse.ch/export/#csv))
+6. run `vmAutomation.py` to run the list of malware binaries inside the associated BMcollect logs, file-operations, densities, and screenshots for each hash in the previous step
+7. run `csv_populate` to generate a summary of the dataset
+8. To rerun the project for a different set of malware binaries based on the summary of the dataset created, or for a configuration, run `rerun.py`.
 
 
 # Requirements
@@ -41,7 +41,7 @@ calculate the file operations done by the ransomware.
 
 # csv_populate.py
 This script extracts the maximum density changed from densities, number of new files, and file operations
-of a ransomware and add that data to the `summary.csv` file.
+of a ransomware and add that data to the `summary.csv` file. It takes as argument the name of the folder for which you want to make the csv.
 
 # SHA256 Collection
 A `full_sha256.txt` file can be downloaded from [Malwarebazaar](https://bazaar.abuse.ch/export/). 
@@ -59,4 +59,4 @@ If one wishes to replicate the information, they can run the `rerun.py` file, wh
  or one could provide a query of its own that follows the rules for DataFrame of the Pandas library and is a valid query based on "summary.csv", created after running vmAutomation.py for a folder
 
 # configuration.py
-This file is individual to each folder crearted and contains the configuration for that particular run. If you change the name of any file, make sure to reflect that change in the respective `configuration.py`. For example the deafult way of naming hash files when creates is: `[FOLDER_NAME]_hashes_[RASNOMWARE_EXTENSION].txt`. If you chnage the name of these hash files, make sure to change it accordingly in the varaible 'hashFileName' in the relevant `configuration.py`. You would also have to change the name in variable 'new_hash_name' in `rerun.py`.
+This file is individual to each folder created and contains the configuration for that particular run. If you change the name of any file, make sure to reflect that change in the respective `configuration.py`. For example the deafult way of naming hash files when creates is: `[FOLDER_NAME]_hashes_[RASNOMWARE_EXTENSION].txt`. If you chnage the name of these hash files, make sure to change it accordingly in the varaible 'hashFileName' in the relevant `configuration.py`. You would also have to change the name in variable 'new_hash_name' in `rerun.py`.

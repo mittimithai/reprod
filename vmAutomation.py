@@ -61,14 +61,14 @@ def vboxManage(programPath, programArg, cmdType):
 def extrachHash(hashFileName):
 
     # check if there is any hash left in the file, otherwise close
-    filesize = os.path.getsize(f"{config.current_directory}\\{hashFileName}")
+    filesize = os.path.getsize(f"{config.run_dir}\\{hashFileName}")
     if filesize == 0:
         print('file is empty, no hash to read \n')
         sys.exit("file is empty, no hash to read")
 
     # read the hash from the file
     try:
-        with open(f"{config.current_directory}\\{hashFileName}", 'r') as f:
+        with open(f"{config.run_dir}\\{hashFileName}", 'r') as f:
             hash = f.readline()
             return hash.strip()
 
@@ -79,21 +79,21 @@ def extrachHash(hashFileName):
 def deleteHash(hashFileName):
 
     # check if there is any hash left in the file, otherwise close
-    filesize = os.path.getsize(f"{config.current_directory}\\{hashFileName}")
+    filesize = os.path.getsize(f"{config.run_dir}\\{hashFileName}")
     if filesize == 0:
         print('file is empty, no hash to delete \n')
         sys.exit("file is empty, no hash to delete")
 
     # delete the first line(hash) from the file
     try:
-        with open(f"{config.current_directory}\\{hashFileName}", 'r') as fr:
+        with open(f"{config.run_dir}\\{hashFileName}", 'r') as fr:
             # reading line by line
             lines = fr.readlines()
 
             # pointer for position
             ptr = 1
             # opening in writing mode
-            with open(f"{config.current_directory}\\{hashFileName}", 'w') as fw:
+            with open(f"{config.run_dir}\\{hashFileName}", 'w') as fw:
                 for line in lines:
 
                     # we want to remove 1st line
@@ -108,7 +108,7 @@ def saveHash(ransomwareExtension, hash_value):
 
     # save the hash to a new file
     try:
-        with open(f"{config.current_directory}\\vm_hashes_done_{ransomwareExtension}.txt", 'a') as fw:
+        with open(f"{config.run_dir}\\vm_hashes_done_{ransomwareExtension}.txt", 'a') as fw:
             fw.write(hash_value+'\n')
     except:
         print("Error:Unable to save the hash")
@@ -118,7 +118,7 @@ def retryHash(ransomwareExtension, hash_value):
 
     # save the hash to a new file
     try:
-        with open(f"{config.current_directory}\\vm_hashes_retry_{ransomwareExtension}.txt", 'a') as fw:
+        with open(f"{config.run_dir}\\vm_hashes_retry_{ransomwareExtension}.txt", 'a') as fw:
             fw.write(hash_value+'\n')
     except:
         print("Error:Unable to save retry hash")
