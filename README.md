@@ -6,25 +6,24 @@ Published in the CSET 2023: [https://doi.org/10.1145/3607505.3607510](https://do
 Broadly, the code can be used to download batches of malware samples from [MalwareBazaar](https://bazaar.abuse.ch/), run them in a windows virtual machine and extract procmon logs provided as  input to [SPADE](https://github.com/ashish-gehani/SPADE).  The code depends on two virtual machine images, the detailed instructions to create those images can be found in `virtual_machine_setup.txt`.
 
 1. Ensure that VirtualBox binaries are in your path (this is done by default on most package manager installtions). This can be checked by running `vboxmanage` at the command line.
-2. Download and unzip the [7zip](https://www.7-zip.org/) and [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) folders in the root directory of this repo. Make sure the folders are named "7-Zip" and "ProcessMonitor"
-3. Move the `spade.reporter.ProcMon.pmc` from repo folder to `ProcessMonitor` folder
-4. An initial folder, named `run_template`, is provided with a configuration.py and a list of malware hashes.
-4. run `setup.py`, this will import the two virtual machine image (one for the windows malware host and one for the SPADE host) that will run the malware binaries into virtualbox (paths specified in `config.py`) and make snapshots of them. You will have to provide the name of the folder where you want to setup the directories.
-5. use the supplied `run_template_hashes_exe.txt` file, a list of malware sha256 hashes from MalwareBazaar (this list can easily be obtained from [Malware Bazaar](https://bazaar.abuse.ch/export/#csv))
-6. run `vmAutomation.py` to run the list of malware binaries inside the associated BMcollect logs, file-operations, densities, and screenshots for each hash in the previous step
-7. run `csv_populate` to generate a summary of the dataset
-8. To rerun the project for a different set of malware binaries based on the summary of the dataset created, or for a configuration, run `rerun.py`.
+2. Download and unzip the [7zip](https://www.7-zip.org/) and [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) folders in the root directory of this repo. Make sure the folders are named "7-Zip" and "ProcessMonitor".
+3. Move the `spade.reporter.ProcMon.pmc` from repo folder to `ProcessMonitor` folder.
+4. An initial folder, named `run_template`, is provided with `configuration.py` and a complete list of malware hashes from MalwareBazaar (as of time of writing). A list of malware SHA256 hashes from MalwareBazaar (this list can easily be obtained from [Malware Bazaar](https://bazaar.abuse.ch/export/#csv)).
+4. Run `setup.py`, this will import the two virtual machine images (one for the windows malware sanbox and one for SPADE operations) into virtualbox (paths specified in `config.py`) and make snapshots of them. You will have to provide the name of the folder where you want to setup the directories in `config.py`.
+5. Run `vmAutomation.py` to run the list of malware binaries inside the associated BMcollect logs, file-operations, densities, and screenshots for each hash in the previous step.
+6. Run `make_summary` to generate a summary of the dataset.
+7. To setup a new run based on the configuration of an existing run run `rerun.py` supplying the run folder that will act as teh template and the name of the new run as command line arguments.
 
 
 # Requirements
-Python version: 3.?
+Python version: 3.11.0
 
-ransomeware vm requirments:
+Windows malware sandbox virtual machine requirements:
 Ram : 8gb
 Processor : 1 core
 Storage: 68gb
 
-spade vm requirments:
+SPADE virtual machine requirments:
 Ram : 32gb
 Processor: 2 cores
 Storage : 50gb
